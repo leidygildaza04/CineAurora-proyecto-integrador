@@ -42,29 +42,6 @@ Categorías de Boleta: General, Estudiante (20% desc.), Tercera Edad (30% desc.)
 
 Artistas Registrados: 40 actores/directores vinculados mediante contratos de tipo Charla, Presentación o Ciclo.
 
-📁 Estructura del Repositorio
-
-El repositorio dentro de la carpeta avance1-postgresql/ está estructurado de acuerdo con los requerimientos oficiales de la materia:
-
-avance1-postgresql/
-├── README.md                          <- Documentación general del módulo (este archivo)
-├── avance1-informe.pdf                 <- Informe final impreso/completo en formato PDF
-├── modelo-er/
-│   └── cinemas8_modelo_er.pdf         <- Diagrama del Modelo Entidad-Relación
-├── modelo-relacional/
-│   └── cinemas8_modelo_relacional.pdf <- Diagrama del Modelo Relacional en 3FN
-├── scripts/
-│   ├── 01_creacion_tablas.sql         <- Script DDL con 11 tablas, PK, FK, CHECK e Índices
-│   ├── 02_datos_prueba.sql            <- Datos de prueba coherentes (>= 30-40 registros por tabla clave)
-│   ├── 03_triggers.sql                <- 8 Triggers de integridad distribuidos en 7 tablas
-│   ├── 04_procedimientos.sql          <- 3 Procedimientos PL/pgSQL transaccionales con EXCEPTION
-│   └── 05_consultas.sql               <- 3 Consultas SQL analíticas complejas (JOIN, GROUP BY, HAVING)
-└── evidencias/
-    ├── creacion-tablas/               <- Capturas de ejecución DDL limpia
-    ├── datos-prueba/                  <- Capturas de inserción exitosa
-    ├── triggers/                      <- Capturas de activación de triggers y bloqueos por CHECK
-    ├── procedimientos/                <- Capturas de ejecución de CALL sp_*() y manejo de excepciones
-    └── consultas/                     <- Capturas de resultados de reportes analíticos
 
 
 
@@ -73,28 +50,6 @@ Descripción del Núcleo Transaccional
 1. Modelo Relacional en 3FN (11 Tablas)
 
 El diseño garantiza la eliminación de redundancias y anomalías a través de 11 entidades normalizadas:
-
-Pelicula
-
-Sala
-
-Silla
-
-Funcion
-
-Cliente
-
-Empleado
-
-Venta
-
-Boleta
-
-Staff_Funcion
-
-Artista
-
-Contrato_Artista
 
 2. Triggers de Integridad (8 Triggers en 7 Tablas)
 
@@ -132,30 +87,4 @@ Incluye reportes complejos con agregaciones (SUM, AVG, COUNT), agrupamientos (GR
 
 Instrucciones de Despliegue y Ejecución
 
-Para desplegar la base de datos localmente en PostgreSQL (v15 o superior), ejecuta los scripts en el orden exacto indicado a continuación:
 
-# 1. Crear e ingresar a la base de datos en psql o pgAdmin
-CREATE DATABASE cinedb;
-\c cinedb
-
-# 2. Ejecutar DDL (Creación de tablas, restricciones e índices)
-\i scripts/01_creacion_tablas.sql
-
-# 3. Poblar datos de prueba
-\i scripts/02_datos_prueba.sql
-
-# 4. Compilar Triggers y Funciones de Validación
-\i scripts/03_triggers.sql
-
-# 5. Compilar Procedimientos Almacenados PL/pgSQL
-\i scripts/04_procedimientos.sql
-
-# 6. Ejecutar Consultas Analíticas
-\i scripts/05_consultas.sql
-
-
-Estado de Congelamiento de Entrega
-
-Estado: Congelado para evaluación oficial.
-
-Hora de Cierre: 15 de Octubre de 2026 — 11:59 AM.
