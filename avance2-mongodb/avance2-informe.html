@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>avance2-informe.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="cineaurora">CINEAURORA</h1>
+<h2 id="avance-2--capa-documental-mongodb-y-fundamentos-teóricos">AVANCE 2 — Capa Documental (MongoDB) y Fundamentos Teóricos</h2>
+<p><strong>Proyecto:</strong> Sistema de gestión de CineAurora<br>
+<strong>Asignatura:</strong> Bases de Datos<br>
+<strong>Fecha:</strong> Noviembre de 2026</p>
+<hr>
+<h1 id="1-introducción">1. Introducción</h1>
+<p>El presente avance desarrolla la capa documental del sistema CineAurora mediante MongoDB. Su propósito es complementar la base de datos relacional PostgreSQL, almacenando información flexible y descriptiva relacionada con las películas, los requisitos técnicos de proyección, las reseñas de los espectadores y los reportes de incidentes.</p>
+<p>La integración de ambas tecnologías permite aprovechar las características de cada modelo de base de datos.</p>
+<h1 id="2-arquitectura-de-la-solución">2. Arquitectura de la solución</h1>
+<p>El sistema utiliza una arquitectura de persistencia políglota compuesta por PostgreSQL y MongoDB.</p>
+<p><strong>PostgreSQL:</strong> almacena la información estructurada y transaccional del cine, como películas, salas, funciones, ventas, espectadores y personal.</p>
+<p><strong>MongoDB:</strong> almacena información documental que requiere flexibilidad, como fichas técnicas, requisitos de proyección, reseñas e incidentes.</p>
+<p>La comunicación entre ambas bases de datos se realiza mediante identificadores compartidos.</p>
+<h3 id="diagrama-de-arquitectura-políglota">Diagrama de arquitectura políglota</h3>
+<p><img src="diagrama-arquitectura-poliglota/diagrama-arquitectura-cine-aurora.png" alt="Diagrama de arquitectura CineAurora"></p>
+<h1 id="3-diseño-de-las-colecciones-mongodb">3. Diseño de las colecciones MongoDB</h1>
+<h2 id="31-fichas_tecnicas_peliculas">3.1 fichas_tecnicas_peliculas</h2>
+<p>Almacena información técnica de las películas, incluyendo sus versiones, duración, idioma, subtítulos, elenco y clasificaciones por país.</p>
+<p>Identificador relacionado: id_pelicula.</p>
+<p>Se utiliza información embebida para las versiones, el elenco y las clasificaciones, debido a que estos datos complementan directamente la ficha técnica.</p>
+<h2 id="32-requisitos_proyeccion">3.2 requisitos_proyeccion</h2>
+<p>Almacena los requisitos técnicos necesarios para realizar cada función cinematográfica.</p>
+<p>Incluye el identificador de la función, la sala, el tipo de proyección y los requerimientos técnicos.</p>
+<p>Identificadores relacionados: id_funcion e id_sala.</p>
+<p>Los requisitos se almacenan como un documento embebido porque pueden variar dependiendo del tipo de proyección.</p>
+<h2 id="33-resenas_peliculas">3.3 resenas_peliculas</h2>
+<p>Almacena las opiniones de los espectadores sobre las películas.</p>
+<p>Incluye la calificación, el texto de la reseña, la fecha y la respuesta de la empresa.</p>
+<p>Identificadores relacionados: id_pelicula e id_espectador.</p>
+<p>La respuesta de la empresa se almacena embebida porque pertenece directamente a la reseña.</p>
+<h2 id="34-reportes_incidentes">3.4 reportes_incidentes</h2>
+<p>Almacena los incidentes técnicos, quejas y situaciones de seguridad que se presentan en las instalaciones del cine.</p>
+<p>Incluye la sala, la función, el personal responsable, el tipo de incidente, la descripción, la fecha y los detalles adicionales.</p>
+<p>Identificadores relacionados: id_sala, id_funcion e id_staff.</p>
+<p>Se utiliza un objeto embebido llamado detalles, porque la información adicional cambia dependiendo del tipo de incidente.</p>
+<h1 id="4-justificación-del-modelo-documental">4. Justificación del modelo documental</h1>
+<p>MongoDB permite almacenar documentos con estructuras flexibles, lo que facilita representar información que puede cambiar dependiendo del contexto.</p>
+<p>Se utiliza el modelo embebido cuando los datos tienen una relación directa con el documento principal y normalmente se consultan juntos.</p>
+<p>Se utilizan referencias mediante identificadores cuando la información pertenece a entidades administradas por PostgreSQL.</p>
+<p>Esta distribución evita duplicar innecesariamente la información principal y permite integrar los dos motores de bases de datos.</p>
+<h1 id="5-validaciones-mediante-json-schema">5. Validaciones mediante JSON Schema</h1>
+<p>Se implementaron validaciones utilizando $jsonSchema para controlar la estructura de los documentos.</p>
+<p>Las cuatro colecciones cuentan con validadores que establecen tipos de datos y campos obligatorios.</p>
+<p>Las validaciones ayudan a mantener la consistencia de la información y evitan insertar documentos que no cumplan con las reglas definidas.</p>
+<h1 id="6-datos-de-prueba">6. Datos de prueba</h1>
+<p>Se insertaron 30 documentos en cada colección, para un total de 120 documentos.</p>
+<table>
+<thead>
+<tr>
+<th>Colección</th>
+<th style="text-align:right">Documentos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fichas_tecnicas_peliculas</td>
+<td style="text-align:right">30</td>
+</tr>
+<tr>
+<td>requisitos_proyeccion</td>
+<td style="text-align:right">30</td>
+</tr>
+<tr>
+<td>resenas_peliculas</td>
+<td style="text-align:right">30</td>
+</tr>
+<tr>
+<td>reportes_incidentes</td>
+<td style="text-align:right">30</td>
+</tr>
+<tr>
+<td>Total</td>
+<td style="text-align:right">120</td>
+</tr>
+</tbody>
+</table>
+<h1 id="7-consultas-y-agregaciones">7. Consultas y agregaciones</h1>
+<p>Se implementaron seis consultas para recuperar información específica:</p>
+<ol>
+<li>Buscar las fichas técnicas de una película.</li>
+<li>Buscar proyecciones en formato 3D.</li>
+<li>Consultar reseñas con calificación igual o superior a cuatro.</li>
+<li>Consultar incidentes de seguridad.</li>
+<li>Buscar reseñas de un espectador.</li>
+<li>Consultar incidentes de una sala.</li>
+</ol>
+<p>También se implementaron tres agregaciones:</p>
+<ol>
+<li>Calcular el promedio de calificaciones y el total de reseñas por película.</li>
+<li>Obtener la cantidad de incidentes por tipo.</li>
+<li>Obtener la cantidad de funciones por tipo de proyección.</li>
+</ol>
+<h1 id="8-fundamentos-teóricos-acid-base-y-cap">8. Fundamentos teóricos: ACID, BASE y CAP</h1>
+<h2 id="81-acid">8.1 ACID</h2>
+<p>ACID representa las propiedades de atomicidad, consistencia, aislamiento y durabilidad.</p>
+<p>En CineAurora, estas propiedades son importantes para las operaciones transaccionales, especialmente las ventas de boletas, los pagos y la asignación de funciones.</p>
+<p>PostgreSQL es adecuado para estas operaciones porque ofrece transacciones ACID.</p>
+<h2 id="82-base">8.2 BASE</h2>
+<p>BASE representa disponibilidad básica, estado flexible y consistencia eventual.</p>
+<p>Este enfoque resulta útil para información documental como reseñas, fichas técnicas y reportes de incidentes, donde se puede priorizar la disponibilidad y flexibilidad de almacenamiento.</p>
+<p>MongoDB permite trabajar con documentos flexibles y ofrece configuraciones de consistencia que deben seleccionarse según las necesidades del sistema.</p>
+<h2 id="83-cap">8.3 CAP</h2>
+<p>El teorema CAP establece que en presencia de una partición de red un sistema distribuido debe priorizar entre consistencia y disponibilidad.</p>
+<p>En CineAurora es importante considerar este principio al integrar diferentes tecnologías de almacenamiento.</p>
+<p>La elección depende del tipo de operación: las ventas requieren consistencia fuerte, mientras que algunas consultas documentales pueden tolerar actualizaciones con consistencia eventual.</p>
+<h1 id="9-conclusiones">9. Conclusiones</h1>
+<p>La implementación de MongoDB permite complementar la estructura relacional de PostgreSQL mediante documentos flexibles.</p>
+<p>Las cuatro colecciones desarrolladas permiten administrar información técnica de películas, requisitos de proyección, reseñas e incidentes.</p>
+<p>La arquitectura políglota aprovecha las fortalezas de ambas tecnologías y permite organizar la información según sus características.</p>
+<p>La implementación de validaciones, datos de prueba, consultas y agregaciones constituye una base para continuar con la integración del sistema CineAurora.</p>
+<h1 id="10-evidencias">10. Evidencias</h1>
+<h2 id="101-creación-de-colecciones">10.1 Creación de colecciones</h2>
+<p><img src="evidencias/01_colecciones_creadas.png" alt="Colecciones creadas"></p>
+<h2 id="102-documentos-insertados">10.2 Documentos insertados</h2>
+<p><img src="evidencias/02_fichas_tecnicas.png" alt="Fichas técnicas"></p>
+<h2 id="103-consultas-y-agregaciones">10.3 Consultas y agregaciones</h2>
+<p><img src="evidencias/03_consultas_agregaciones.png" alt="Consultas y agregaciones"></p>
+<h2 id="104-diagrama-de-arquitectura">10.4 Diagrama de arquitectura</h2>
+<p><img src="diagrama-arquitectura-poliglota/diagrama-arquitectura-cine-aurora.png" alt="Arquitectura CineAurora"></p>
+
+</body>
+</html>
