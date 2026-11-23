@@ -1,0 +1,166 @@
+{
+  "info": {
+    "_postman_id": "7a8b6c10-4f39-4b8a-9d7e-cineaurora01",
+    "name": "CineAurora - API de Integracion",
+    "description": "Pruebas de los endpoints implementados en entrega-final/modulo-api/routes/integracionRoutes.js. Valida conectividad PostgreSQL/MongoDB, consultas integradas, registro de ventas y sincronización de pendientes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3001",
+      "type": "default"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Estado de conexiones PostgreSQL y MongoDB",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/integracion/estado"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Responde HTTP 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Confirma ambas conexiones', function () {",
+              "  const data = pm.response.json();",
+              "  pm.expect(data.postgresql).to.eql('conectado');",
+              "  pm.expect(data.mongodb).to.eql('conectado');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Funciones y reseñas (PostgreSQL + MongoDB)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/integracion/funciones-resenas"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Responde HTTP 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Devuelve una lista', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Películas y requisitos de proyección (PostgreSQL + MongoDB)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/integracion/peliculas-requisitos"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Responde HTTP 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Devuelve una lista', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Ventas e incidentes por sala (PostgreSQL + MongoDB)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{base_url}}/api/integracion/ventas-incidentes"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Responde HTTP 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Devuelve una lista', function () { pm.expect(pm.response.json()).to.be.an('array'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Registrar venta - ejemplo Online",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"id_espectador\": 1,\n  \"canal\": \"Online\",\n  \"id_funcion\": 1,\n  \"id_tipo_boleta\": 1,\n  \"cantidad\": 1\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "{{base_url}}/api/integracion/ventas"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('La API acepta la solicitud o informa una regla de negocio', function () {",
+              "  pm.expect([201, 202, 400, 409, 422]).to.include(pm.response.code);",
+              "});",
+              "if ([201, 202].includes(pm.response.code)) {",
+              "  pm.test('La respuesta informa el estado de sincronización', function () {",
+              "    const data = pm.response.json();",
+              "    pm.expect(data).to.have.property('sincronizacion');",
+              "  });",
+              "}"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Sincronizar ventas pendientes",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": "{{base_url}}/api/integracion/sincronizar-pendientes"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Responde HTTP 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Informa el resultado de sincronización', function () {",
+              "  const data = pm.response.json();",
+              "  pm.expect(data).to.have.property('pendientes_encontradas');",
+              "  pm.expect(data).to.have.property('sincronizadas');",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
